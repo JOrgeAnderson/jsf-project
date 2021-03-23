@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	   xmlns:h="http://java.sun.com/jsf/html"
+	   xmlns:f="http://java.sun.com/jsf/core"
+	   xmlns:ui="http://java.sun.com/jsf/facelets"
+	   xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<head>
+
+<link rel="Stylesheet" type="text/css"  href="resources/css/login.css"/>
+
+<title>Login</title>
+</head>
+
+<h:body>
+
+<h:form>
+  <h1 class="a11y-hidden">Login Form</h1>
+  <div>
+    <h:outputLabel class="label-email" value="Login:"/>
+      <h:inputText class="text" name="email" pt:placeholder="Informe o Login" tabindex="1" value="#{usuarioBeans.usuario.login}"/>
+
+  </div>
+  <div>
+    <h:outputLabel class="label-password" value="Senha:"/>
+      <h:inputSecret class="text" name="password" pt:placeholder="Informe sua senha" tabindex="2" value="#{usuarioBeans.usuario.senha}"/>
+  </div>
+  
+  <h:commandButton type="submit" value="Entrar" action="#{usuarioBeans.logar}" />
+  
+  <figure aria-hidden="true">
+    <div class="person-body"></div>
+    <div class="neck skin"></div>
+    <div class="head skin">
+      <div class="eyes"></div>
+      <div class="mouth"></div>
+    </div>
+    <div class="hair"></div>
+    <div class="ears"></div>
+    <div class="shirt-1"></div>
+    <div class="shirt-2"></div>
+  </figure>
+  
+</h:form>
+
+
+
+</h:body>
+</html>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+
+<title>Lancamentos</title>
+</h:head>
+
+<h:body>
+
+	<ui:include src="/menu.xhtml"/>
+
+<h:form>
+	
+	<h:panelGrid columns="2" style="margin-left: auto; margin-right: auto; margin-top: 40px;">
+		
+		<f:facet name="header">
+			<h:outputLabel value="Cadastro de Lançamentos" style="height: 5em; display: flex; align-items: center"/>
+		
+		</f:facet>
+		
+		<h:outputLabel/>		
+		<h:inputText value="#{lancamentoBeans.lancamento.id}" style="width: 18px; display: none"/>
+	
+		<h:outputLabel value="Valor:"/>
+		<h:inputText value="#{lancamentoBeans.lancamento.valor}"/>
+		
+		<h:outputLabel value="Origem:"/>
+		<h:inputText value="#{lancamentoBeans.lancamento.empresaOrigem}"/>
+		
+		<h:outputLabel value="Destino:"/>
+		<h:inputText value="#{lancamentoBeans.lancamento.empresaDestino}"/>
+		
+		<h:outputLabel/>
+		
+		<h:panelGroup>
+			<h:commandButton action="#{lancamentoBeans.novo}"
+						image="resources/img/novo.png" title="Novo"
+						style="margin-right: 10px;" />
+					<h:commandButton action="#{lancamentoBeans.salvar}"
+						image="resources/img/Salve.png" title="Salvar"
+						style="margin-right: 10px;" />
+					<h:commandButton action="#{lancamentoBeans.remove}"
+						image="resources/img/excluir.png" title="Remover"
+						style="margin-right: 10px; height: 32px; width: 32px;"
+						rendered="#{usuarioBeans.permiteAcesso('ADMINISTRADOR')}"/>
+					<h:commandButton type="reset" image="resources/img/clean.png"
+						title="Limpar" />
+		
+		</h:panelGroup>
+	</h:panelGrid>
+	
+	<h:dataTable value="#{lancamentoBeans.lancamentos}" var="lanc" border="3" style="margin-left: auto; margin-right: auto; margin-top: 40px;">
+				<f:facet name="header">Lista de lançamentos</f:facet>
+				
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+					<h:outputLabel value="#{lanc.id}"/>	
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Valor</f:facet>
+					<h:outputLabel value="#{lanc.valor}"/>	
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Origem</f:facet>
+					<h:outputLabel value="#{lanc.empresaOrigem}"/>	
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Destino</f:facet>
+					<h:outputLabel value="#{lanc.empresaDestino}"/>	
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Usuario</f:facet>
+					<h:outputLabel value="#{lanc.usuario.nome}"/>	
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Editar</f:facet>
+					<h:commandLink title="Editar">
+						<h:graphicImage value="/resources/img/editar.png" height="32" width="32"></h:graphicImage>
+						<f:setPropertyActionListener value="#{lanc}" target="#{lancamentoBeans.lancamento}"/>
+					</h:commandLink>	
+				</h:column>
+				
+				<h:column rendered="#{usuarioBeans.permiteAcesso('ADMINISTRADOR')}">
+					<f:facet name="header">Excluir</f:facet>
+					<h:commandLink action="#{lancamentoBeans.remove}" title="Excluir">
+						<h:graphicImage value="/resources/img/excluir.png" height="32" width="32"></h:graphicImage>
+						<f:setPropertyActionListener value="#{lanc}" target="#{lancamentoBeans.lancamento}"/>
+					</h:commandLink>	
+				</h:column>
+				
+				
+				
+			</h:dataTable>
+	
+
+</h:form>
+
+
+
+
+
+</h:body>
+</html>
